@@ -34,7 +34,12 @@ defmodule Api.MixProject do
   defp deps do
     [
       {:absinthe, "~> 1.4.0"},
-      {:absinthe_plug, "~> 1.4"},
+      {:absinthe_ecto, "~> 0.1.3"},
+      {:absinthe_plug, "~> 1.4.0"},
+      {:absinthe_relay, "~> 1.4.0"},
+      {:argon2_elixir, "~> 2.3"},
+      {:bamboo, "~> 1.4"},
+      {:cors_plug, "~> 2.0"},
       {:ecto_sql, "~> 3.1"},
       {:gettext, "~> 0.11"},
       {:guardian, "~> 2.0"},

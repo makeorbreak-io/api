@@ -2,6 +2,7 @@ defmodule ApiWeb.Router do
   use ApiWeb, :router
 
   alias Absinthe
+  alias Api.GraphQL
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -25,6 +26,7 @@ defmodule ApiWeb.Router do
 
   pipeline :graphql do
     plug :accepts, ["json", "graphql"]
+    plug Api.GraphQL.GuardianContext
   end
 
   scope "/", ApiWeb do
@@ -36,8 +38,12 @@ defmodule ApiWeb.Router do
   scope "/" do
     pipe_through [:graphql, :auth]
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: ApiWeb.Graphql.Schema, interface: :simple
-    forward "/graphql", Absinthe.Plug, schema: ApiWeb.Graphql.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: Api.GraphQL.Schema, interface: :simple
+    forward "/graphql", Absinthe.Plug, schema: Api.GraphQL.Schema
+  end
+
+  if Mix.env == :dev do
+    forward "/sent_emails", Bamboo.SentEmailViewerPlug
   end
 
   # Other scopes may use custom stacks.

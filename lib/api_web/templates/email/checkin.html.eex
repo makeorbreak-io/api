@@ -1,0 +1,37 @@
+<tr style="box-sizing:border-box;" >
+  <td class="title" style="box-sizing:border-box;padding-top:50px;padding-bottom:50px;padding-right:0;padding-left:0;text-align:center;font-style:normal;font-variant:normal;font-weight:bold;font-size:24px;font-family:Helvetica,Arial,sans-serif;line-height:normal;" ><%= @title %></td>
+</tr>
+
+<tr style="box-sizing:border-box;" >
+  <td class="body" style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;" >
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Dear <%= @name %></p>
+
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Please read this email right after your check-in.</p>
+
+    <b style="box-sizing:border-box;font-style:normal;font-variant:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;display:block;font-weight:bold;" >Internet access</b>
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >You can connect to the "Make or Break" network. Please think about everyone that is connected and be a good sport, as in, make a responsible usage of it. ;)</p>
+
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >SSID: Make or Break <br style="box-sizing:border-box;" />Password: CabosDeRede</p>
+
+    <b style="box-sizing:border-box;font-style:normal;font-variant:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;display:block;font-weight:bold;" >Read the rules</b>
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >In order to avoid unpleasant surprises we urge you to read the <a href="https://github.com/makeorbreak-io/rules" style="box-sizing:border-box;color:#5d00f3;text-decoration:underline;" >hackathon rules</a>. In case you have any questions, feel free to get in touch with the organization.</p>
+
+    <b style="box-sizing:border-box;font-style:normal;font-variant:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;display:block;font-weight:bold;" >Join the Slack #community</b>
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >You are about to receive an email to join our Slack community. DO IT. JUST, DO IT! Every time we want to tell you something important, that will be our main communication platform. Every time you need to talk to us, it should be through Slack as well.</p>
+
+    <b style="box-sizing:border-box;font-style:normal;font-variant:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;display:block;font-weight:bold;" >Github repository</b>
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >The first thing you should do today is fill in your project details on the Make or Break website. As soon as you do this you will be automatically assigned a GitHub repository by the organization, if you have filled the Github handle at the Make or Break website. If you didn't, make sure you contact @nunopolonia in Slack.</p>
+
+    <b style="box-sizing:border-box;font-style:normal;font-variant:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;display:block;font-weight:bold;" >Your credencial is Gold</b>
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Make sure you always have your credential with you. It is your way of entering and leaving the venue all the time without bumping into any problems. Especially at night.
+    <br style="box-sizing:border-box;" /> You are only allowed in the 1st and 3rd floors.</p>
+
+    <b style="box-sizing:border-box;font-style:normal;font-variant:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;display:block;font-weight:bold;" >Hosting</b>
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >In order to request a VPS, talk to @nunopolonia on Slack.</p>
+
+    <b style="box-sizing:border-box;font-style:normal;font-variant:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;display:block;font-weight:bold;" >Have Fun!</b>
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Ultimately, we all want to have three memorable days around what we love the most: nerd stuff! We made a great effort to provide you with the best possible experience at Make or Break. From you we expect you to be respectful to everyone, be tidy and have fun!</p>
+
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Enough with the talk and let's get to hacking!</p>
+  </td>
+</tr>
