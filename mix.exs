@@ -44,6 +44,7 @@ defmodule Api.MixProject do
       {:gettext, "~> 0.11"},
       {:guardian, "~> 2.0"},
       {:guardian_phoenix, "~> 2.0"},
+      {:httpoison, "~> 1.6"},
       {:jason, "~> 1.0"},
       {:phoenix, "~> 1.4.14"},
       {:phoenix_ecto, "~> 4.0"},
