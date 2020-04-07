@@ -1,20 +1,47 @@
-# Api
+# API
 
-To start your Phoenix server:
+## Setup guide
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+To start your Phoenix app:
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+- Install dependencies with `mix deps.get`
+- Add the necessary variables to your environment
+- Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+- Start Phoenix endpoint with `mix server`
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Deploy
 
-## Learn more
+We're using [edeliver](https://github.com/edeliver/edeliver). We're using cold
+deploys, not upgrades.
+The deployment process is done using the following commands:
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+- mix edeliver build release
+- mix edeliver deploy release production
+- mix edeliver restart production
+- mix edeliver migrate production
+
+Note that trying to stop the api from edeliver won't be too successfull as
+systemd will notice its absence and restart it immediatly.
+
+We try to preserve our deps' built files. If you need to clean those for
+some reason, run `GIT_CLEAN_PATHS=. mix edeliver build release`.
+
+## Environment Variables
+
+Use your preferred method to add the following variables to your environment.
+You can find an example env file you can source in `share/env/env`
+
+| Variable             | Description                 | Environments |
+| -------------------- | --------------------------- | ------------ |
+| `DB_URL`             | Postgresql database url     | All          |
+| `SECRET_KEY_BASE`    | Secret key base             | All          |
+| `MAILGUN_API_KEY`    | Mailgun API credentials     | Prod         |
+| `MAILGUN_API_DOMAIN` | Mailgun API credentials     | Prod         |
+| `HOST`               | Server url                  | All          |
+| `PORT`               | Port configuration          | Prod         |
+| `SENTRY_DSN`         | Sentry.io project url       | Prod         |
+| `SLACK_TOKEN`        | Slack API access token      | Prod         |
+| `GITHUB_TOKEN`       | Github API access token     | All          |
+| `AI_CALLBACK_URL`    | AI Competition callback url | All          |
+| `AI_SERVER_HOST`     | AI Competition server host  | All          |
+| `AI_SERVER_TOKEN`    | AI Competition access token | All          |
