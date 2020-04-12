@@ -26,20 +26,18 @@ defmodule ApiWeb.Router do
 
   pipeline :graphql do
     plug :accepts, ["json", "graphql"]
-    plug Api.GraphQL.GuardianContext
+    plug GraphQL.GuardianContext
   end
 
   scope "/", ApiWeb do
     pipe_through :api
-
-    get "/", PageController, :index
   end
 
   scope "/" do
     pipe_through [:graphql, :auth]
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: Api.GraphQL.Schema, interface: :simple
-    forward "/graphql", Absinthe.Plug, schema: Api.GraphQL.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: GraphQL.Schema, interface: :simple
+    forward "/graphql", Absinthe.Plug, schema: GraphQL.Schema
   end
 
   if Mix.env == :dev do

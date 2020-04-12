@@ -50,10 +50,10 @@ config :api, ApiWeb.Endpoint,
 config :api, ApiWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/api_web/(live|views)/.*(ex)$",
-      ~r"lib/api_web/templates/.*(eex)$"
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/gettext/.*(po)$},
+      ~r{lib/api_web/views/.*(ex)$},
+      ~r{lib/api_web/templates/.*(eex)$},
     ]
   ]
 

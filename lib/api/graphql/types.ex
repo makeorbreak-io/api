@@ -10,7 +10,6 @@ defmodule Api.GraphQL.Types do
   alias Api.Competitions
   alias Api.Repo
   alias Api.Suffrages
-  alias Api.Teams.{Invite,Membership,Team}
 
   import_types Absinthe.Type.Custom
   import_types Api.GraphQL.Scalars

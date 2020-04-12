@@ -3,8 +3,6 @@ defmodule Api.GraphQL.GuardianContext do
 
   import Plug.Conn
 
-  alias Api.Accounts.User
-
   def init(opts), do: opts
 
   def call(conn, _) do

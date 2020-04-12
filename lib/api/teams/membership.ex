@@ -3,7 +3,7 @@ defmodule Api.Teams.Membership do
   import Ecto.Changeset
 
   alias Api.Accounts.User
-  alias Api.Teams.Team
+alias Api.Teams.Team
 
   @valid_attrs ~w(
     user_id
@@ -27,8 +27,8 @@ defmodule Api.Teams.Membership do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:user_id, :team_id])
-    |> validate_required([:user_id, :team_id])
+    |> cast(params, @valid_attrs)
+    |> validate_required(@required_attrs)
     |> foreign_key_constraint(:user_id)
   end
 end

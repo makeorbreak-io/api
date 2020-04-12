@@ -25,7 +25,9 @@ config :api,
 config :api, ApiWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(html json)]
+  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Api.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [signing_salt: "2QpPQxUe"]
 
 # Configures Guardian for authentication
 config :api, ApiWeb.Guardian,

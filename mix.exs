@@ -34,6 +34,7 @@ defmodule Api.MixProject do
         :phoenix_html,
         :postgrex,
         :runtime_tools,
+        :tentacat,
       ]
     ]
   end
@@ -65,11 +66,12 @@ defmodule Api.MixProject do
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_pubsub, "~> 1.1"},
       {:premailex, "~> 0.3.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:plug, "~> 1.7"},
       {:poison, "~> 2.1.0"},
       {:postgrex, ">= 0.0.0"},
+      {:tentacat, "~> 1.0"},
     ]
   end
 
