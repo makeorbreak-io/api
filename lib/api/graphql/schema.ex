@@ -13,7 +13,7 @@ defmodule Api.GraphQL.Schema do
   import_types Api.GraphQL.Queries.Integrations
   import_types Api.GraphQL.Queries.Suffrages
   import_types Api.GraphQL.Queries.Teams
-  import_types Api.GraphQL.Queries.Workshops
+  import_types Api.GraphQL.Queries.Events
 
   import_types Api.GraphQL.Mutations.AICompetition
   import_types Api.GraphQL.Mutations.Competitions
@@ -23,7 +23,7 @@ defmodule Api.GraphQL.Schema do
   import_types Api.GraphQL.Mutations.Suffrages
   import_types Api.GraphQL.Mutations.Teams
   import_types Api.GraphQL.Mutations.Users
-  import_types Api.GraphQL.Mutations.Workshops
+  import_types Api.GraphQL.Mutations.Events
 
   query do
     import_fields :admin_resources
@@ -33,7 +33,7 @@ defmodule Api.GraphQL.Schema do
     import_fields :integrations_queries
     import_fields :suffrages_queries
     import_fields :teams_queries
-    import_fields :workshops_queries
+    import_fields :events_queries
 
     field :me, :user, resolve: &Resolvers.me/2
   end
@@ -47,6 +47,6 @@ defmodule Api.GraphQL.Schema do
     import_fields :suffrages_mutations
     import_fields :teams_mutations
     import_fields :users_mutations
-    import_fields :workshops_mutations
+    import_fields :events_mutations
   end
 end

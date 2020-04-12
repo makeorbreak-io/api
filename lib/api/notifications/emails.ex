@@ -45,14 +45,14 @@ defmodule Api.Notifications.Emails do
     |> render("hackathon.html")
   end
 
-  def joined_workshop_email(recipient, workshop) do
+  def joined_event_email(recipient, event) do
     base_email(recipient)
-    |> subject("You have applied to #{workshop.name}")
+    |> subject("You have applied to #{event.name}")
     |> put_html_layout({LayoutView, "email.html"})
-    |> assign(:title, "You have applied to #{workshop.name}")
+    |> assign(:title, "You have applied to #{event.name}")
     |> assign(:name, User.display_name(recipient))
-    |> assign(:workshop, workshop)
-    |> render("workshop.html")
+    |> assign(:event, event)
+    |> render("event.html")
   end
 
   def checkin_email(recipient) do

@@ -3,7 +3,7 @@ defmodule Api.Stats do
 
   alias Api.Repo
   alias Api.Accounts.User
-  alias Api.Workshops.{Workshop, Attendance}
+  alias Api.Events.{Event, Attendance}
   alias Api.Competitions.Attendance, as: CompAttendance
   alias Api.Teams.{Team, Membership}
 
@@ -33,24 +33,24 @@ defmodule Api.Stats do
         total: Repo.aggregate(Team, :count, :id),
         applied: Repo.aggregate(applied_teams, :count, :id),
       },
-      workshops: workshop_stats(),
+      events: event_stats(),
     }
   end
 
-  defp workshop_stats do
-    workshops = Repo.all(Workshop)
+  defp event_stats do
+    events = Repo.all(Event)
 
-    Enum.map(workshops, fn(workshop) ->
+    Enum.map(events, fn(event) ->
       query = from w in Attendance,
-        where: w.workshop_id == type(^workshop.id, Ecto.UUID)
+        where: w.event_id == type(^event.id, Ecto.UUID)
 
-      attendees_count = Repo.aggregate(query, :count, :workshop_id)
+      attendees_count = Repo.aggregate(query, :count, :event_id)
 
       %{
-        name: workshop.name,
-        slug: workshop.slug,
+        name: event.name,
+        slug: event.slug,
         participants: attendees_count,
-        participant_limit: workshop.participant_limit,
+        participant_limit: event.participant_limit,
       }
     end)
   end

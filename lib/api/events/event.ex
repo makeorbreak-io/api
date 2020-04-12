@@ -1,8 +1,8 @@
-defmodule Api.Workshops.Workshop do
+defmodule Api.Events.Event do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Api.Workshops.Attendance
+  alias Api.Events.Attendance
 
   @valid_attrs ~w(
     name
@@ -17,6 +17,7 @@ defmodule Api.Workshops.Workshop do
     banner_image
     short_date
     short_speaker
+    type
   )a
 
   @required_attrs ~w(
@@ -27,7 +28,7 @@ defmodule Api.Workshops.Workshop do
   @derive {Phoenix.Param, key: :slug}
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  schema "workshops" do
+  schema "events" do
     field :name, :string
     field :slug, :string
     field :summary, :string
@@ -40,9 +41,11 @@ defmodule Api.Workshops.Workshop do
     field :banner_image, :string
     field :short_speaker, :string
     field :short_date, :string
+    field :type, :string, default: "workshop"
+
     timestamps()
 
-    has_many :attendances, Attendance, foreign_key: :workshop_id, on_delete: :delete_all
+    has_many :attendances, Attendance, foreign_key: :event_id, on_delete: :delete_all
     has_many :users, through: [:attendances, :user]
   end
 

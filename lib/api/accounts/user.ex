@@ -5,7 +5,7 @@ defmodule Api.Accounts.User do
   alias Api.Repo
   alias Api.Competitions.Attendance, as: CompAttendance
   alias Api.{Teams.Invite, Teams.Membership}
-  alias Api.{Workshops.Workshop, Workshops.Attendance}
+  alias Api.{Events.Event, Events.Attendance}
   alias Api.{Teams.Invite, Teams.Membership, Teams.ProjectFavorite}
   alias Api.AICompetition.Bot
 
@@ -61,7 +61,7 @@ defmodule Api.Accounts.User do
     has_many :attendances, CompAttendance, foreign_key: :attendee
     has_many :project_favorites, ProjectFavorite
 
-    many_to_many :workshops, Workshop, join_through: Attendance, on_delete: :delete_all
+    many_to_many :events, Event, join_through: Attendance, on_delete: :delete_all
   end
 
   def changeset(struct, params \\ %{}),  do: _cs(struct, params, @valid_attrs)
@@ -104,19 +104,19 @@ defmodule Api.Accounts.User do
     if deleted_at == nil, do: name || (email |> String.split("@") |> Enum.at(0)), else: "[deleted]"
   end
 
-  def can_apply_to_workshops(user) do
-    user = Repo.preload(user, [:workshops, :teams])
+  def can_apply_to_events(user) do
+    user = Repo.preload(user, [:events, :teams])
 
     (
       Enum.any?(user.teams, fn team -> team.applied == true && team.accepted == true end) &&
-      Enum.count(user.workshops, fn(w) -> w.year == DateTime.utc_now.year end) < 2
+      Enum.count(user.events, fn(w) -> w.year == DateTime.utc_now.year end) < 2
     ) || true
   end
 
   def can_apply_to_hackathon(user) do
-    user = Repo.preload(user, :workshops)
+    user = Repo.preload(user, :events)
 
-    Enum.count(user.workshops, fn(w) -> w.year == DateTime.utc_now.year end) <= 2
+    Enum.count(user.events, fn(w) -> w.year == DateTime.utc_now.year end) <= 2
   end
 
   # generate password recovery token

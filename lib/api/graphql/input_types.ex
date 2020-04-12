@@ -40,7 +40,7 @@ defmodule Api.GraphQL.InputTypes do
     field :share_consent, :boolean
   end
 
-  input_object :workshop_input do
+  input_object :event_input do
     field :slug, non_null(:string)
     field :short_date, non_null(:string)
     field :short_speaker, non_null(:string)

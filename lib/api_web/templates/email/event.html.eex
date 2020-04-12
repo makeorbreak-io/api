@@ -5,14 +5,14 @@
 <tr style="box-sizing:border-box;" >
   <td class="body" style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;" >
     <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Hello <%= @name %>,</p>
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >You have just confirmed your presence in the Make or Break workshop:</p>
+    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >You have just confirmed your presence in the Make or Break <%= @event.type %>:</p>
 
     <ul style="box-sizing:border-box;width:100%;padding-top:0;padding-bottom:10px;padding-right:40px;padding-left:40px;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
-      <li style="box-sizing:border-box;" ><%= @workshop.name %></li>
+      <li style="box-sizing:border-box;" ><%= @event.name %></li>
     </ul>
 
     <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
-      If, for some reason, you can’t attend, you should leave the workshop as soon as possible, by visiting the workshop page <a href="https://makeorbreak.io/#workshop-<%= @workshop.slug %>">here</a>
+      If, for some reason, you can’t attend, you should leave the <%= @event.type %> as soon as possible, by visiting the <%= @event.type %> page <a href="https://makeorbreak.io/#event-<%= @event.slug %>">here</a>
     </p>
 
     <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >

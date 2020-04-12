@@ -1,27 +1,27 @@
-defmodule Api.Workshops.Attendance do
+defmodule Api.Events.Attendance do
   use Ecto.Schema
   import Ecto.Changeset
   alias Api.Accounts.User
-  alias Api.Workshops.Workshop
+  alias Api.Events.Event
 
   @valid_attrs ~w(
     user_id
-    workshop_id
+    event_id
     checked_in
   )a
 
   @required_attrs ~w(
     user_id
-    workshop_id
+    event_id
   )a
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  schema "users_workshops" do
+  schema "users_events" do
     field :checked_in, :boolean, default: false
 
     belongs_to :user, User
-    belongs_to :workshop, Workshop
+    belongs_to :event, Event
     timestamps()
   end
 

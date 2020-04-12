@@ -6,7 +6,7 @@ defmodule ApiWeb.TestHelper do
 
   alias Api.Repo
   alias Api.Accounts.User
-  alias Api.Workshops.{Workshop, Attendance}
+  alias Api.Events.{Event, Attendance}
   alias Api.Teams.{Team, Membership, Invite}
   alias Api.Competitions
   alias Api.Competitions.Competition
@@ -20,10 +20,11 @@ defmodule ApiWeb.TestHelper do
     github_handle: "https://github.com/nunopolonia"
   }
 
-  @valid_workshop_attrs %{
-    name: "awesome workshop",
+  @valid_event_attrs %{
+    name: "awesome event",
     participant_limit: 1,
-    short_date: "SUNDAY 10TH — 10:30"
+    short_date: "SUNDAY 10TH — 10:30",
+    type: "workshop"
   }
 
   @valid_competition_attrs %{
@@ -38,7 +39,7 @@ defmodule ApiWeb.TestHelper do
   end
 
   defp add_slug(params) do
-    Map.merge(%{slug: "workshop-#{to_string(:rand.uniform())}"}, params)
+    Map.merge(%{slug: "event-#{to_string(:rand.uniform())}"}, params)
   end
 
   def create_user(params \\ @valid_user_attrs) do
@@ -96,15 +97,15 @@ defmodule ApiWeb.TestHelper do
     |> Repo.insert!
   end
 
-  def create_workshop(params \\ @valid_workshop_attrs) do
-    %Workshop{}
-    |> Workshop.changeset(params |> add_slug)
+  def create_event(params \\ @valid_event_attrs) do
+    %Event{}
+    |> Event.changeset(params |> add_slug)
     |> Repo.insert!
   end
 
-  def create_workshop_attendance(workshop, user) do
-    Repo.insert! %Attendance{workshop_id: workshop.id, user_id: user.id}
-    Workshop.changeset(workshop, %{participants_counter: workshop.participants_counter + 1})
+  def create_event_attendance(event, user) do
+    Repo.insert! %Attendance{event_id: event.id, user_id: user.id}
+    Event.changeset(event, %{participants_counter: event.participants_counter + 1})
     |> Repo.update()
   end
 

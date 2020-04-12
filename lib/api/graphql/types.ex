@@ -150,7 +150,7 @@ defmodule Api.GraphQL.Types do
 
     field :display_name, :string, resolve: Resolvers.run_with_source(&User.display_name/1)
     field :gravatar_hash, :string, resolve: Resolvers.run_with_source(&User.gravatar_hash/1)
-    field :can_apply_to_workshops, :boolean, resolve: Resolvers.run_with_source(&User.can_apply_to_workshops/1)
+    field :can_apply_to_events, :boolean, resolve: Resolvers.run_with_source(&User.can_apply_to_events/1)
     field :can_apply_to_hackathon, :boolean, resolve: Resolvers.run_with_source(&User.can_apply_to_hackathon/1)
 
     field :ai_competition_bot, :ai_competition_bot do
@@ -187,7 +187,7 @@ defmodule Api.GraphQL.Types do
     field :invites, list_of(:invite), resolve: assoc(:invites)
     field :invitations, list_of(:invite), resolve: assoc(:invitations)
     field :ai_competition_bots, list_of(:ai_competition_bot), resolve: assoc(:ai_competition_bots)
-    field :workshops, list_of(:workshop), resolve: assoc(:workshops)
+    field :events, list_of(:event), resolve: assoc(:events)
     field :favorites, list_of(:project_favorite), resolve: assoc(:project_favorites)
   end
 
@@ -225,8 +225,8 @@ defmodule Api.GraphQL.Types do
     field :team, :user, resolve: assoc(:team)
   end
 
-  connection node_type: :workshop
-  object :workshop do
+  connection node_type: :event
+  object :event do
     field :id, :string
     field :name, :string
     field :slug, :string
@@ -240,7 +240,7 @@ defmodule Api.GraphQL.Types do
     field :short_speaker, :string
     field :short_date, :string
 
-    field :attendances, list_of(:workshop_attendance), resolve: assoc(:attendances)
+    field :attendances, list_of(:event_attendance), resolve: assoc(:attendances)
     field :users, list_of(:user) do
       resolve fn _args, %{source: source, context: %{current_user: current_user}} ->
         role = current_user && current_user.role
@@ -275,7 +275,7 @@ defmodule Api.GraphQL.Types do
     end
   end
 
-  object :workshop_attendance do
+  object :event_attendance do
     field :checked_in, :boolean
     field :user, :user do
       resolve fn _args, %{source: source, context: %{current_user: current_user}} ->
@@ -322,7 +322,7 @@ defmodule Api.GraphQL.Types do
     field :users, :json
     field :roles, :json
     field :teams, :json
-    field :workshops, :json
+    field :events, :json
   end
 
   # connection node_type: :flyby
