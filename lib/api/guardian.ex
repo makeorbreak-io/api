@@ -1,4 +1,4 @@
-defmodule Api.Guardian do
+defmodule ApiWeb.Guardian do
   use Guardian, otp_app: :api
 
   alias Api.Repo
@@ -10,5 +10,5 @@ defmodule Api.Guardian do
   def resource_from_claims(%{"sub" => "User:" <> id}) do
     {:ok, Repo.get(User, id)}
   end
-  def resource_from_claims(claims), do: {:error, "Unknown resource type"}
+  def resource_from_claims(_claims), do: {:error, "Unknown resource type"}
 end

@@ -8,13 +8,11 @@ defmodule Api.Teams.Membership do
   @valid_attrs ~w(
     user_id
     team_id
-    role
   )a
 
   @required_attrs ~w(
     user_id
     team_id
-    role
   )a
 
   @primary_key {:id, :binary_id, autogenerate: true}

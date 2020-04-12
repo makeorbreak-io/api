@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
   <style>
@@ -111,9 +110,26 @@
     </tr>
     <tr>
       <td class="body">
-        <p>Hello, <%= @name %></p>
+        <p>Hello,</p>
+        <p><%= host_name %> wants you to join their team for the Make or Break hackathon.</p>
 
-        <%= render @view_module, @view_template, assigns %>
+        <p><a href="https://makeorbreak.io">Make or Break</a> is a 3 day event with workshops (TBA) and a hackathon:</p>
+
+        <ul>
+          <li>A 48 hour programming competition with a hack fair in the last day</li>
+          <li>The hack fair will have all participants test and vote on the best projects</li>
+        </ul>
+
+        <p>By attending, you can expect a welcome pack full of goodies, <a href="https://makeorbreak.io/rules#prizes">prizes for the winners</a>, free food and drinks, video games, board games, and a lot of fun!</p>
+
+        <p>Head over to <a href="https://makeorbreak.io">makeorbreak.io</a> and sign up now! Registrations end on September 2nd.</p>
+
+
+        <p>
+          See you in Porto!
+          <br />
+          The Make or Break team
+        </p>
       </td>
     </tr>
 
@@ -127,20 +143,21 @@
     <tr>
       <td class="footer">
         <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/makeorbreak.io/">
-          <img height="20" src="https://s3.eu-central-1.amazonaws.com/make-or-break-static-assets/email-fb.png" alt="Make or Break Facebook page" />
+          <img height="20" src="https://s3.eu-central-1.amazonaws.com/make-or-break-static-assets/email-fb.svg" alt="Make or Break Facebook page" />
         </a>
         <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/makeorbreakio/">
-          <img height="20" src="https://s3.eu-central-1.amazonaws.com/make-or-break-static-assets/email-twitter.png" alt="Make or Break Twitter account" />
+          <img height="20" src="https://s3.eu-central-1.amazonaws.com/make-or-break-static-assets/email-twitter.svg" alt="Make or Break Twitter account" />
         </a>
       </td>
     </tr>
 
     <tr>
       <td class="footer">
-        © Make or Break 2019
+        © Make or Break 2018
       </td>
     </tr>
 
   </table>
 </body>
 </html>
+

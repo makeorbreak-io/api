@@ -5,7 +5,6 @@ defmodule Api.GraphQL.Queries.Competitions do
   alias Api.Repo
 
   alias Api.GraphQL.Middleware.{RequireAdmin}
-  alias Api.GraphQL.Resolvers
 
   alias Api.Competitions
 
@@ -32,4 +31,3 @@ defmodule Api.GraphQL.Queries.Competitions do
     end
   end
 end
-

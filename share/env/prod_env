@@ -1,0 +1,8 @@
+echo 'MIX_ENV=prod' | sudo tee -a /etc/environment
+echo 'SECRET_KEY_BASE=TheSecretKeyBaseFromTheProdSecretFile' | sudo tee -a /etc/environment
+echo 'DB_HOSTNAME=localhost' | sudo tee -a /etc/environment
+echo 'DB_DATABASE=myapp_prod' | sudo tee -a /etc/environment
+echo 'DB_USERNAME=deploy' | sudo tee -a /etc/environment
+echo 'DB_PASSWORD=password_for_myapp_prod' | sudo tee -a /etc/environment
+
+source /etc/environment

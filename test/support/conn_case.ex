@@ -21,7 +21,15 @@ defmodule ApiWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
+
       alias ApiWeb.Router.Helpers, as: Routes
+      alias Api.Repo
+      alias ApiWeb.UserHelper
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query
+
+      import ApiWeb.TestHelper
 
       # The default endpoint for testing
       @endpoint ApiWeb.Endpoint

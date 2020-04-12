@@ -18,7 +18,7 @@ defmodule Api.GraphQL.GuardianContext do
   """
   def build_context(conn) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
-         {:ok, current_user, _claims} <- Api.Guardian.resource_from_token(token) do
+         {:ok, current_user, _claims} <- ApiWeb.Guardian.resource_from_token(token) do
       %{current_user: current_user}
     else
       _ -> %{}

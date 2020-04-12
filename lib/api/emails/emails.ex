@@ -28,7 +28,7 @@ defmodule Api.Emails do
     Repo.delete(email)
   end
 
-  # def change_email(%Email{} = email) do
-  #   Email.changeset(email, %{})
-  # end
+  def change_email(%Email{} = email) do
+    Email.changeset(email, %{})
+  end
 end

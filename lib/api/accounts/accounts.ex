@@ -5,6 +5,7 @@ defmodule Api.Accounts do
   alias Api.Accounts.User
   alias Api.Teams
   alias Api.Notifications.Emails
+  alias ApiWeb.Guardian
   # alias Guardian.Permissions
 
   def create_session(email, password) do
@@ -34,7 +35,7 @@ defmodule Api.Accounts do
 
         Emails.registration_email(user) |> Mailer.deliver_later
 
-        {:ok, jwt, _claims} = Api.Guardian.encode_and_sign(user)
+        {:ok, jwt, _claims} = ApiWeb.Guardian.encode_and_sign(user)
 
         {:ok, jwt}
       {:error, changeset} -> {:error, changeset}
@@ -108,12 +109,12 @@ defmodule Api.Accounts do
     #   :token,
     #   perms: %{"#{user.role}": Permissions.max}
     # )
-    {:ok, jwt, _full_claims} = Api.Guardian.encode_and_sign(user)
+    {:ok, jwt, _full_claims} = Guardian.encode_and_sign(user)
     {:ok, jwt}
   end
 
   defp revoke_claims(token) do
-    Guardian.revoke!(token)
+    Guardian.revoke(token)
   end
 
   defp add_pwd_recovery_data(nil), do: :user_not_found

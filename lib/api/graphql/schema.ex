@@ -4,8 +4,6 @@ defmodule Api.GraphQL.Schema do
 
   alias Api.GraphQL.Resolvers
 
-  alias Api.Teams
-
   import_types Api.GraphQL.Types
 
   import_types Api.GraphQL.Queries.AICompetition

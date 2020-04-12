@@ -2,7 +2,6 @@ defmodule Api.Competitions.Attendance do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Api.Accounts.User
   alias Api.Competitions.Competition
   alias ApiWeb.{EctoHelper, Crypto}
 

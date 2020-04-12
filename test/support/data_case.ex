@@ -20,6 +20,7 @@ defmodule Api.DataCase do
     quote do
       alias Api.Repo
 
+      import ApiWeb.TestHelper
       import Ecto
       import Ecto.Changeset
       import Ecto.Query

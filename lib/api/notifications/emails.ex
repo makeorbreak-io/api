@@ -10,6 +10,7 @@ defmodule Api.Notifications.Emails do
     |> put_html_layout({LayoutView, "email.html"})
     |> assign(:title, "Join #{User.display_name(host)}'s team in this year's Make or Break")
     |> assign(:host_name, User.display_name(host))
+    |> assign(:name, recipient)
     |> assign(:email, recipient)
     |> render("invite.html")
   end

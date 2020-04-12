@@ -6,7 +6,6 @@ defmodule Api.GraphQL.Queries.AdminResources do
   alias Api.GraphQL.Resolvers
 
   alias Api.Accounts.User
-  alias Api.Competitions.Competition
   alias Api.Emails
   alias Api.Emails.Email
   alias Api.Stats
@@ -78,4 +77,3 @@ defmodule Api.GraphQL.Queries.AdminResources do
     end
   end
 end
-

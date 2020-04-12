@@ -8,19 +8,28 @@
 use Mix.Config
 
 config :api,
-  ecto_repos: [Api.Repo]
+  ecto_repos: [Api.Repo],
+  generators: [binary_id: true],
+  # Use this tutorial to get a Slack token with client privileges
+  # https://medium.com/@andrewarrow/how-to-get-slack-api-tokens-with-client-scope-e311856ebe9
+  slack_token: System.get_env("SLACK_TOKEN"),
+  # Maximum number of users each team is allowed to have
+  team_user_limit: 4,
+  # Library used to make external HTTP requests
+  http_lib: HTTPoison,
+  # Github API data
+  github_token: System.get_env("GITHUB_TOKEN"),
+  github_org: "makeorbreak-io"
 
 # Configures the endpoint
 config :api, ApiWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Api.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "2QpPQxUe"]
+  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(html json)]
 
 # Configures Guardian for authentication
-config :api, Api.Guardian,
-  issuer: "api",
+config :api, ApiWeb.Guardian,
+  issuer: "Api",
   secret_key: System.get_env("SECRET_KEY_BASE")
 
 # Configures Elixir's Logger

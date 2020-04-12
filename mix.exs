@@ -20,7 +20,21 @@ defmodule Api.MixProject do
   def application do
     [
       mod: {Api.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      applications: [
+        :bamboo,
+        :cors_plug,
+        :cowboy,
+        :elixir_make,
+        :guardian,
+        :httpoison,
+        :logger,
+        :markus,
+        :phoenix,
+        :phoenix_ecto,
+        :phoenix_html,
+        :postgrex,
+        :runtime_tools,
+      ]
     ]
   end
 
@@ -46,11 +60,13 @@ defmodule Api.MixProject do
       {:guardian_phoenix, "~> 2.0"},
       {:httpoison, "~> 1.6"},
       {:jason, "~> 1.0"},
+      {:markus, "~> 0.3.0"},
       {:phoenix, "~> 1.4.14"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_pubsub, "~> 1.1"},
+      {:premailex, "~> 0.3.0"},
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 2.1.0"},
       {:postgrex, ">= 0.0.0"},
