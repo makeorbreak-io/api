@@ -1,7 +1,6 @@
 defmodule Api.GraphQL.Types do
   use Absinthe.Schema.Notation
   use Absinthe.Ecto, repo: Api.Repo
-  use Absinthe.Relay.Schema.Notation, :modern
 
   alias Api.GraphQL.Resolvers
 
@@ -15,7 +14,6 @@ defmodule Api.GraphQL.Types do
   import_types Api.GraphQL.Scalars
   import_types Api.GraphQL.InputTypes
 
-  connection node_type: :ai_competition_game
   object :ai_competition_game do
     field :id, :string
     field :initial_state, :json
@@ -29,7 +27,6 @@ defmodule Api.GraphQL.Types do
     field :bots, list_of(:ai_competition_bot), resolve: assoc(:bots)
   end
 
-  connection node_type: :ai_competition_bot
   object :ai_competition_bot do
     field :id, :string
     field :sdk, :string
@@ -61,7 +58,6 @@ defmodule Api.GraphQL.Types do
     end
   end
 
-  connection node_type: :competition
   object :competition do
     field :id, :string
     field :name, :string
@@ -73,7 +69,6 @@ defmodule Api.GraphQL.Types do
     field :attendances, list_of(:attendance)
   end
 
-  connection node_type: :email
   object :email do
     field :id, :string
     field :name, :string
@@ -95,7 +90,6 @@ defmodule Api.GraphQL.Types do
     field :user, :user, resolve: assoc(:user)
   end
 
-  connection node_type: :team
   object :team do
     field :id, :string
     field :name, :string
@@ -136,7 +130,6 @@ defmodule Api.GraphQL.Types do
 
   end
 
-  connection node_type: :user
   object :user do
     field :id, :string
     field :email, :string
@@ -191,7 +184,6 @@ defmodule Api.GraphQL.Types do
     field :favorites, list_of(:project_favorite), resolve: assoc(:project_favorites)
   end
 
-  connection node_type: :invite
   object :invite do
     field :id, :string
     field :open, :boolean
@@ -225,7 +217,6 @@ defmodule Api.GraphQL.Types do
     field :team, :user, resolve: assoc(:team)
   end
 
-  connection node_type: :event
   object :event do
     field :id, :string
     field :name, :string
@@ -325,7 +316,6 @@ defmodule Api.GraphQL.Types do
     field :events, :json
   end
 
-  # connection node_type: :flyby
   object :flyby do
     field :id, :string
     field :name, :string

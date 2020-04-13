@@ -1,6 +1,5 @@
 defmodule Api.GraphQL.Schema do
   use Absinthe.Schema
-  use Absinthe.Relay.Schema, :modern
 
   alias Api.GraphQL.Resolvers
 

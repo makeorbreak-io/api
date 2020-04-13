@@ -1,6 +1,5 @@
 defmodule Api.GraphQL.Mutations.Session do
   use Absinthe.Schema.Notation
-  use Absinthe.Relay.Schema.Notation, :modern
 
   alias Api.GraphQL.Middleware.{RequireAuthn}
   alias Api.GraphQL.Resolvers
