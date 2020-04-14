@@ -1,5 +1,4 @@
 defmodule Api.GraphQL.Resolvers do
-  alias Absinthe.Relay.Connection
   alias Api.Repo
   alias Api.GraphQL.Errors
   alias Api.GraphQL.EctoExtensions
@@ -44,10 +43,12 @@ defmodule Api.GraphQL.Resolvers do
 
   def all(fun, arg_keys) when is_function(fun) do
     fn source, args, info ->
-      fun
+      resources = fun
       |> apply(collect_args(arg_keys, source, args, info))
       |> EctoExtensions.orderable(args)
-      |> Connection.from_query(&Repo.all/1, args)
+      |> Repo.all
+
+      {:ok, resources}
     end
   end
 

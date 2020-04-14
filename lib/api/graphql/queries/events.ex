@@ -1,6 +1,5 @@
 defmodule Api.GraphQL.Queries.Events do
   use Absinthe.Schema.Notation
-  use Absinthe.Relay.Schema.Notation, :modern
 
   alias Api.GraphQL.Resolvers
 
