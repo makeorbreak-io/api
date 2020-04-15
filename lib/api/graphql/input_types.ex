@@ -52,6 +52,7 @@ defmodule Api.GraphQL.InputTypes do
     field :year, non_null(:integer)
     field :speaker_image, :string
     field :banner_image, :string
+    field :type, :string
   end
 
   input_object :flyby_input do
