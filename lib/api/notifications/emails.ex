@@ -13,6 +13,7 @@ defmodule Api.Notifications.Emails do
     |> assign(:name, recipient)
     |> assign(:email, recipient)
     |> render("invite.html")
+    |> premail()
   end
 
   def invite_notification_email(recipient, host) do
@@ -24,6 +25,7 @@ defmodule Api.Notifications.Emails do
     |> assign(:name, User.display_name(recipient))
     |> assign(:email, recipient.email)
     |> render("invite_notification.html")
+    |> premail()
   end
 
   def registration_email(recipient) do
@@ -33,6 +35,7 @@ defmodule Api.Notifications.Emails do
     |> assign(:title, "Welcome to Make or Break!")
     |> assign(:name, User.display_name(recipient))
     |> render("registration.html")
+    |> premail()
   end
 
   def joined_hackathon_email(recipient, team) do
@@ -43,6 +46,7 @@ defmodule Api.Notifications.Emails do
     |> assign(:name, User.display_name(recipient))
     |> assign(:team_name, team.name)
     |> render("hackathon.html")
+    |> premail()
   end
 
   def joined_event_email(recipient, event) do
@@ -53,6 +57,7 @@ defmodule Api.Notifications.Emails do
     |> assign(:name, User.display_name(recipient))
     |> assign(:event, event)
     |> render("event.html")
+    |> premail()
   end
 
   def checkin_email(recipient) do
@@ -62,6 +67,7 @@ defmodule Api.Notifications.Emails do
     |> assign(:title, "Welcome to Make or Break!")
     |> assign(:name, User.display_name(recipient))
     |> render("checkin.html")
+    |> premail()
   end
 
   def recover_password_email(recipient) do
@@ -72,6 +78,7 @@ defmodule Api.Notifications.Emails do
     |> assign(:name, User.display_name(recipient))
     |> assign(:token, recipient.pwd_recovery_token)
     |> render("recover_password.html")
+    |> premail()
   end
 
   def team_acceptance(recipient) do
@@ -81,6 +88,7 @@ defmodule Api.Notifications.Emails do
     |> assign(:title, "Welcome to Make or Break!")
     |> assign(:name, User.display_name(recipient))
     |> render("team_acceptance.html")
+    |> premail()
   end
 
   def send_email(email, recipient) do

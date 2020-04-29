@@ -1,23 +1,23 @@
-<tr style="box-sizing:border-box;" >
-  <td class="title" style="box-sizing:border-box;padding-top:50px;padding-bottom:50px;padding-right:0;padding-left:0;text-align:center;font-style:normal;font-variant:normal;font-weight:bold;font-size:24px;font-family:Helvetica,Arial,sans-serif;line-height:normal;" ><%= @title %></td>
+<tr>
+  <td class="title"><%= @title %></td>
 </tr>
 
-<tr style="box-sizing:border-box;" >
-  <td class="body" style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;" >
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Hello <%= @name %>,</p>
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Your team <%= @team_name %> has confirmed your presence in the Make or Break 2018 hackathon.</p>
+<tr>
+  <td class="body">
+    <p>Hello <%= @name %>,</p>
+    <p>Your team <%= @team_name %> has confirmed your presence in the Make or Break 2018 hackathon.</p>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
+    <p>
       Every application will be under review and waiting for approval.
-      <br style="box-sizing:border-box;" />
+      <br />
       Expect a word from us in the near future.
     </p>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >If, for some reason, you can’t attend, you should communicate your unavailability to the organizers as soon as possible by sending us a message on Facebook or an email to info@makeorbreak.io.</p>
+    <p>If, for some reason, you can’t attend, you should communicate your unavailability to the organizers as soon as possible by sending us a message on Facebook or an email to info@makeorbreak.io.</p>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
+    <p>
       See you in Porto!
-      <br style="box-sizing:border-box;" />
+      <br />
       The Make or Break team
     </p>
   </td>

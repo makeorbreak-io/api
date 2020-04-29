@@ -1,27 +1,27 @@
-<tr style="box-sizing:border-box;" >
-  <td class="title" style="box-sizing:border-box;padding-top:50px;padding-bottom:50px;padding-right:0;padding-left:0;text-align:center;font-style:normal;font-variant:normal;font-weight:bold;font-size:24px;font-family:Helvetica,Arial,sans-serif;line-height:normal;" ><%= @title %></td>
+<tr>
+  <td class="title"><%= @title %></td>
 </tr>
 
-<tr style="box-sizing:border-box;" >
-  <td class="body" style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;" >
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Hello,</p>
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" ><%= @host_name %> wants you to join their team for the Make or Break hackathon.</p>
+<tr>
+  <td class="body">
+    <p>Hello,</p>
+    <p><%= @host_name %> wants you to join their team for the Make or Break hackathon.</p>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" ><a href="https://makeorbreak.io" style="box-sizing:border-box;color:#5d00f3;text-decoration:underline;" >Make or Break</a> is a 3 day event with workshops (TBA) and a hackathon:</p>
+    <p>Make or Break</a> is a 3 day event with workshops (TBA) and a hackathon:</p>
 
-    <ul style="box-sizing:border-box;width:100%;padding-top:0;padding-bottom:10px;padding-right:40px;padding-left:40px;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
-      <li style="box-sizing:border-box;" >A 48 hour programming competition with a hack fair in the last day</li>
-      <li style="box-sizing:border-box;" >The hack fair will have all participants test and vote on the best projects</li>
+    <ul>
+      <li>A 48 hour programming competition with a hack fair in the last day</li>
+      <li>The hack fair will have all participants test and vote on the best projects</li>
     </ul>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >By attending, you can expect a welcome pack full of goodies, <a href="https://makeorbreak.io/rules#prizes" style="box-sizing:border-box;color:#5d00f3;text-decoration:underline;" >prizes for the winners</a>, free food and drinks, video games, board games, and a lot of fun!</p>
+    <p>prizes for the winners</a>, free food and drinks, video games, board games, and a lot of fun!</p>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Head over to <a href="https://makeorbreak.io" style="box-sizing:border-box;color:#5d00f3;text-decoration:underline;" >makeorbreak.io</a> and sign up now!</p>
+    <p>makeorbreak.io</a> and sign up now!</p>
 
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
+    <p>
       See you in Porto!
-      <br style="box-sizing:border-box;" />
+      <br />
       The Make or Break team
     </p>
   </td>

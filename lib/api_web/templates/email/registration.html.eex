@@ -1,41 +1,41 @@
-<tr style="box-sizing:border-box;" >
-  <td class="title" style="box-sizing:border-box;padding-top:50px;padding-bottom:50px;padding-right:0;padding-left:0;text-align:center;font-style:normal;font-variant:normal;font-weight:bold;font-size:24px;font-family:Helvetica,Arial,sans-serif;line-height:normal;" ><%= @title %></td>
+<tr>
+  <td class="title"><%= @title %></td>
 </tr>
 
-<tr style="box-sizing:border-box;" >
-  <td class="body" style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;">
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >Hello <%= @name %>,</p>
+<tr>
+  <td class="body">
+    <p>Hello <%= @name %>,</p>
 
-    <b style="box-sizing:border-box;font-style:normal;font-variant:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;display:block;font-weight:bold;" >If you intend to participate in the hackathon or attend any of our workshops, read this.</b>
+    <b>If you intend to participate in the hackathon or attend any of our workshops, read this.</b>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
+    <p>
       Thank you for registering in the Make or Break website. However, you still need to apply to the event!
     </p>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
+    <p>
       To participate in the hackathon you have to confirm your team presence:
     </p>
 
-    <ol style="box-sizing:border-box;width:100%;padding-top:0;padding-bottom:10px;padding-right:40px;padding-left:40px;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
-      <li style="box-sizing:border-box;" >Head over to <a href="https://makeorbreak.io" style="box-sizing:border-box;color:#5d00f3;text-decoration:underline;" >makeorbreak.io</a></li>
-      <li style="box-sizing:border-box;" >Sign in</li>
-      <li style="box-sizing:border-box;" >Make sure you have created a team with more than 1 member</li>
-      <li style="box-sizing:border-box;" >In the Dashboard area, click ‘Apply to hackathon’</li>
+    <ol>
+      <li>makeorbreak.io</a></li>
+      <li>Sign in</li>
+      <li>Make sure you have created a team with more than 1 member</li>
+      <li>In the Dashboard area, click ‘Apply to hackathon’</li>
     </ol>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
-      By attending, you can expect a welcome pack full of goodies, <a href="https://makeorbreak.io/rules#prizes" style="box-sizing:border-box;color:#5d00f3;text-decoration:underline;" >prizes for the winners</a>, free food and drinks, video games, board games, and a lot of fun!
+    <p>
+      By attending, you can expect a welcome pack full of goodies, <a href="https://makeorbreak.io/rules#prizes">prizes for the winners</a>, free food and drinks, video games, board games, and a lot of fun!
     </p>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
+    <p>
       We have yet to announce the list of Make or Break 2018 workshops.
-      <br style="box-sizing:border-box;" />
+      <br />
       So, stay tuned to our social media!
     </p>
 
-    <p style="box-sizing:border-box;font-style:normal;font-variant:normal;font-weight:normal;font-size:16px;font-family:Helvetica,Arial,sans-serif;line-height:normal;color:#808080;margin-top:20px;margin-bottom:20px;margin-right:auto;margin-left:auto;max-width:600px;" >
+    <p>
       See you in Porto!
-      <br style="box-sizing:border-box;" />
+      <br />
       The Make or Break team
     </p>
   </td>
