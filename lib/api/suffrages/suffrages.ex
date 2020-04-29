@@ -4,8 +4,8 @@ defmodule Api.Suffrages do
   alias Api.Repo
   alias Api.Accounts.User
   alias Api.Teams.{Team, Membership}
-  alias Api.Competitions
-  alias Api.Competitions.Attendance
+  alias Api.Editions
+  alias Api.Editions.Attendance
   alias Api.Suffrages.{Suffrage, Vote, PaperVote, Candidate}
   alias Ecto.{Multi, Changeset}
 
@@ -13,9 +13,9 @@ defmodule Api.Suffrages do
     Repo.all(Suffrage)
   end
 
-  def create_suffrage(params, competition_id) do
+  def create_suffrage(params, edition_id) do
     changeset = Suffrage.changeset(
-      %Suffrage{competition_id: competition_id},
+      %Suffrage{edition_id: edition_id},
       params
     )
 
@@ -77,7 +77,7 @@ defmodule Api.Suffrages do
       :not_started ->
         create_candidates(suffrage_id)
         assign_tie_breakers(suffrage_id)
-        assign_missing_preferences(suffrage.competition_id)
+        assign_missing_preferences(suffrage.edition_id)
         update_suffrage(suffrage_id, %{voting_started_at: DateTime.utc_now})
       :started -> :already_started
       :ended -> :already_ended
@@ -108,7 +108,7 @@ defmodule Api.Suffrages do
 
   def create_candidates(suffrage_id) do
     suffrage = get_suffrage(suffrage_id)
-    from(t in Team, where: t.competition_id == ^suffrage.competition_id and t.eligible == ^true)
+    from(t in Team, where: t.edition_id == ^suffrage.edition_id and t.eligible == ^true)
     |> Repo.all()
     |> Enum.each(fn team ->
       create_candidate(%{team_id: team.id, suffrage_id: suffrage_id})
@@ -129,7 +129,7 @@ defmodule Api.Suffrages do
   def upsert_votes(user, votes) do
     multi = Multi.new()
 
-    attendance = Competitions.get_attendance(Competitions.default_competition.id, user.id)
+    attendance = Editions.get_attendance(Editions.default_edition.id, user.id)
 
     votes_length = Enum.reduce(votes, 0, fn {_, ballot}, acc -> acc + length(ballot) end)
 
@@ -172,7 +172,7 @@ defmodule Api.Suffrages do
       v in Vote,
       join: a in Attendance,
       where: a.attendee == ^user.id,
-      where: a.competition_id == ^Competitions.default_competition.id,
+      where: a.edition_id == ^Editions.default_edition.id,
       where: a.voter_identity == v.voter_identity
     )
     |> Repo.all
@@ -180,7 +180,7 @@ defmodule Api.Suffrages do
     {:ok, votes}
   end
 
-  def valid_voters(competition_id, at \\ nil) do
+  def valid_voters(edition_id, at \\ nil) do
     at = at || DateTime.utc_now
 
     from(
@@ -188,13 +188,13 @@ defmodule Api.Suffrages do
       join: s in assoc(c, :suffrage),
       left_join: t in assoc(c, :team),
       left_join: m in assoc(t, :members),
-      where: s.competition_id == ^competition_id,
+      where: s.edition_id == ^edition_id,
       where: is_nil(c.disqualified_at) or c.disqualified_at > ^at,
       select: m
     )
   end
 
-  def build_info_start(competition_id) do
+  def build_info_start(edition_id) do
     suffrages = all_suffrages()
     suffrage = List.first(suffrages)
     begun_at = suffrage_voting_started_at(suffrage.id)
@@ -206,17 +206,17 @@ defmodule Api.Suffrages do
     %{
       participants: %{
         initial_count:
-          Repo.aggregate(valid_voters(competition_id, begun_at), :count, :id),
+          Repo.aggregate(valid_voters(edition_id, begun_at), :count, :id),
       },
       paper_votes: %{
         initial_count:
-          Repo.aggregate(valid_paper_votes(competition_id, begun_at), :count, :id),
+          Repo.aggregate(valid_paper_votes(edition_id, begun_at), :count, :id),
       },
       teams: teams |> Enum.map(&(&1.name)),
     } |> Poison.encode!
   end
 
-  def build_info_end(competition_id) do
+  def build_info_end(edition_id) do
     suffrages = all_suffrages()
     suffrage = List.first(suffrages)
 
@@ -236,15 +236,15 @@ defmodule Api.Suffrages do
     %{
       participants: %{
         initial_count:
-          Repo.aggregate(valid_voters(competition_id, begun_at), :count, :id),
+          Repo.aggregate(valid_voters(edition_id, begun_at), :count, :id),
         final_count:
-          Repo.aggregate(valid_voters(competition_id, ended_at), :count, :id),
+          Repo.aggregate(valid_voters(edition_id, ended_at), :count, :id),
       },
       paper_votes: %{
         initial_count:
-          Repo.aggregate(valid_paper_votes(competition_id, begun_at), :count, :id) ,
+          Repo.aggregate(valid_paper_votes(edition_id, begun_at), :count, :id) ,
         final_count:
-          Repo.aggregate(redeemed_paper_votes(competition_id, ended_at), :count, :id),
+          Repo.aggregate(redeemed_paper_votes(edition_id, ended_at), :count, :id),
       },
       teams: teams |> Enum.map(&(&1.name)),
       podiums: suffrages |> Map.new(fn s -> {s.name, s.podium |> Enum.map(&team_name_map[&1])} end),
@@ -303,7 +303,7 @@ defmodule Api.Suffrages do
       m in Membership,
       join: t in Team,
       where: m.user_id == ^user.id,
-      where: t.competition_id == ^Competitions.default_competition().id,
+      where: t.edition_id == ^Editions.default_edition().id,
       where: m.team_id == t.id
     ) |> Repo.one()
 
@@ -316,7 +316,7 @@ defmodule Api.Suffrages do
       join: a in Attendance,
       where: v.suffrage_id == ^suffrage_id,
       where: a.attendee == ^user.id,
-      where: a.competition_id == ^suffrage.competition_id,
+      where: a.edition_id == ^suffrage.edition_id,
       where: a.voter_identity == v.voter_identity
 
     case Repo.one(query) do
@@ -396,33 +396,33 @@ defmodule Api.Suffrages do
   end
 
   def missing_voters do
-    competition_id = Competitions.default_competition().id
+    edition_id = Editions.default_edition().id
 
     voters = from(
       v in Vote,
       join: u in User,
       join: a in assoc(u, :attendances),
       where: v.voter_identity == a.voter_identity,
-      where: a.competition_id == ^competition_id,
+      where: a.edition_id == ^edition_id,
       select: u.id
     ) |> Repo.all()
 
     from(
       u2 in User,
       join: a in assoc(u2, :attendances),
-      where: a.competition_id == ^competition_id,
+      where: a.edition_id == ^edition_id,
       where: u2.id not in ^voters
     )
     |> Repo.all()
   end
 
-  def valid_paper_votes(competition_id, at \\ nil) do
+  def valid_paper_votes(edition_id, at \\ nil) do
     at = at || DateTime.utc_now
 
     from(
       pv in PaperVote,
       join: s in assoc(pv, :suffrage),
-      where: s.competition_id == ^competition_id,
+      where: s.edition_id == ^edition_id,
       where: is_nil(pv.annulled_at) or pv.annulled_at > ^at
     )
   end
@@ -437,10 +437,10 @@ defmodule Api.Suffrages do
     )
   end
 
-  def redeemed_paper_votes(competition_id, at \\ nil) do
+  def redeemed_paper_votes(edition_id, at \\ nil) do
     at = at || DateTime.utc_now
 
-    from pv in valid_paper_votes(competition_id, at),
+    from pv in valid_paper_votes(edition_id, at),
       where: not is_nil(pv.team_id)
   end
 
@@ -451,10 +451,10 @@ defmodule Api.Suffrages do
       where: not is_nil(pv.team_id)
   end
 
-  def unredeemed_paper_votes(competition_id, at \\ nil) do
+  def unredeemed_paper_votes(edition_id, at \\ nil) do
     at = at || DateTime.utc_now
 
-    from pv in valid_paper_votes(competition_id, at),
+    from pv in valid_paper_votes(edition_id, at),
       where: is_nil(pv.redeemed_at)
   end
 
@@ -548,8 +548,8 @@ defmodule Api.Suffrages do
     candidates = from(
       c in Candidate,
       join: s in assoc(c, :suffrage),
-      join: comp in assoc(s, :competition),
-      where: comp.id == ^Competitions.default_competition.id,
+      join: comp in assoc(s, :edition),
+      where: comp.id == ^Editions.default_edition.id,
       where: c.team_id == ^team_id,
       where: not is_nil(c.disqualified_at)
     )
@@ -570,11 +570,11 @@ defmodule Api.Suffrages do
     end)
   end
 
-  def assign_missing_preferences(competition_id) do
+  def assign_missing_preferences(edition_id) do
     suffrages = Repo.all(Suffrage) |> Enum.map(&(&1.id))
 
     Repo.all(from(t in Team,
-      where: t.competition_id == ^competition_id and is_nil(t.prize_preference))
+      where: t.edition_id == ^edition_id and is_nil(t.prize_preference))
     )
     |> Enum.map(fn t ->
       t

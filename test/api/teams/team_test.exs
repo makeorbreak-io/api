@@ -8,10 +8,10 @@ defmodule Api.TeamTest do
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    c = create_competition()
+    c = create_edition()
     changeset = Team.changeset(
       %Team{},
-      Map.merge(@valid_attrs, %{competition_id: c.id})
+      Map.merge(@valid_attrs, %{edition_id: c.id})
     )
     assert changeset.valid?
   end

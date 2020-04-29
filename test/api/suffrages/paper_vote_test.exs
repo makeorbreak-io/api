@@ -6,9 +6,9 @@ defmodule Api.PaperVoteTest do
   setup %{} do
     user = create_user()
     admin = create_admin()
-    competition = create_competition()
-    suffrage = create_suffrage(competition.id)
-    team = create_team(user, competition)
+    edition = create_edition()
+    suffrage = create_suffrage(edition.id)
+    team = create_team(user, edition)
     {:ok, %{
       user: user,
       admin: admin,

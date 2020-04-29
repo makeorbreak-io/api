@@ -6,7 +6,7 @@ defmodule Api.GraphQL.Types do
 
   alias Api.AICompetition.Bots
   alias Api.Accounts.User
-  alias Api.Competitions
+  alias Api.Editions
   alias Api.Repo
   alias Api.Suffrages
 
@@ -58,7 +58,7 @@ defmodule Api.GraphQL.Types do
     end
   end
 
-  object :competition do
+  object :edition do
     field :id, :string
     field :name, :string
     field :status, :string
@@ -107,7 +107,7 @@ defmodule Api.GraphQL.Types do
       end
     end
 
-    field :competition, :competition, resolve: assoc(:competition)
+    field :edition, :edition, resolve: assoc(:edition)
     field :memberships, list_of(:membership), resolve: assoc(:memberships)
     field :members, list_of(:user), resolve: assoc(:members)
     field :invites, list_of(:invite), resolve: assoc(:invites)
@@ -172,7 +172,7 @@ defmodule Api.GraphQL.Types do
 
     field :current_attendance, :attendance do
       resolve fn _args, %{source: source} ->
-        {:ok, Competitions.get_attendance(Competitions.default_competition.id, source.id)}
+        {:ok, Editions.get_attendance(Editions.default_edition.id, source.id)}
       end
     end
 
@@ -245,7 +245,7 @@ defmodule Api.GraphQL.Types do
 
   object :attendance do
     field :id, :string
-    field :competition_id, :string
+    field :edition_id, :string
     field :attendee, :string
     field :checked_in, :boolean
 
@@ -279,7 +279,7 @@ defmodule Api.GraphQL.Types do
     end
   end
 
-  #============================================================================ Voting / competition
+  #============================================================================ Voting / edition
   object :suffrage do
     field :id, :string
     field :name, :string
@@ -287,7 +287,7 @@ defmodule Api.GraphQL.Types do
     field :status, :string
     field :voting_started_at, :naive_datetime
     field :voting_ended_at, :naive_datetime
-    field :competition_id
+    field :edition_id
 
     field :teams, list_of(:team), resolve: assoc(:teams)
   end

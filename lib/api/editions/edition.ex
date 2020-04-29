@@ -1,8 +1,8 @@
-defmodule Api.Competitions.Competition do
+defmodule Api.Editions.Edition do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Api.Competitions.Attendance
+  alias Api.Editions.Attendance
   alias Api.Teams.Team
   alias Api.Suffrages.Suffrage
 
@@ -14,7 +14,7 @@ defmodule Api.Competitions.Competition do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  schema "competitions" do
+  schema "editions" do
     field :name, :string
     # Enum - "created", "started", "ended"
     field :status, :string, default: "created"

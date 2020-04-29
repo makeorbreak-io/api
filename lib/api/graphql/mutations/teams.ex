@@ -3,7 +3,7 @@ defmodule Api.GraphQL.Mutations.Teams do
 
   alias Api.GraphQL.Middleware.{RequireAuthn, RequireAdmin}
 
-  alias Api.Competitions
+  alias Api.Editions
   alias Api.Integrations.Github
   alias Api.Teams
   alias Api.Teams.ProjectFavorites
@@ -16,7 +16,7 @@ defmodule Api.GraphQL.Mutations.Teams do
       middleware RequireAuthn
 
       resolve fn %{team: params}, %{context: %{current_user: current_user}} ->
-        team_params = params |> Map.merge(%{competition_id: Competitions.default_competition.id})
+        team_params = params |> Map.merge(%{edition_id: Editions.default_edition.id})
 
         Teams.create_team(current_user, team_params)
       end

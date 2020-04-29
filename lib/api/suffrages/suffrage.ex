@@ -3,20 +3,20 @@ defmodule Api.Suffrages.Suffrage do
   import Ecto.Changeset
 
   alias Api.Suffrages.{Candidate, Vote, PaperVote}
-  alias Api.Competitions.Competition
+  alias Api.Editions.Edition
 
   @valid_attrs ~w(
     name
     slug
     voting_started_at
     voting_ended_at
-    competition_id
+    edition_id
   )a
 
   @required_attrs ~w(
     name
     slug
-    competition_id
+    edition_id
   )a
 
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -28,7 +28,7 @@ defmodule Api.Suffrages.Suffrage do
     field :voting_ended_at, :utc_datetime
     field :podium, {:array, :binary_id}
 
-    belongs_to :competition, Competition
+    belongs_to :edition, Edition
 
     has_many :votes, Vote
     has_many :paper_votes, PaperVote
@@ -44,7 +44,7 @@ defmodule Api.Suffrages.Suffrage do
     |> validate_required(@required_attrs)
     |> _cant_change(:voting_started_at)
     |> _cant_change(:voting_ended_at)
-    |> assoc_constraint(:competition)
+    |> assoc_constraint(:edition)
   end
 
   defp _cant_change(%Ecto.Changeset{changes: changes, data: data} = changeset, field) do

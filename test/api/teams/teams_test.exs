@@ -4,7 +4,7 @@ defmodule Api.TeamsTest do
 
   alias Api.Teams
   alias Api.Teams.{Team, Invite, Membership}
-  alias Api.Competitions
+  alias Api.Editions
   alias Api.Notifications.Emails
 
   @valid_attrs %{name: "awesome team"}
@@ -13,7 +13,7 @@ defmodule Api.TeamsTest do
 
   setup do
     u1 = create_user()
-    c1 = create_competition()
+    c1 = create_edition()
     t1 = create_team(u1, c1)
 
     {:ok, %{u1: u1, c1: c1, t1: t1}}
@@ -32,7 +32,7 @@ defmodule Api.TeamsTest do
   end
 
   test "create valid team", %{u1: u1, c1: c1} do
-    params = Map.merge(@valid_attrs, %{competition_id: c1.id})
+    params = Map.merge(@valid_attrs, %{edition_id: c1.id})
     {:ok, team} = Teams.create_team(u1, params)
 
     assert Repo.get(Team, team.id)
@@ -62,7 +62,7 @@ defmodule Api.TeamsTest do
     assert result == {:unauthorized, :unauthorized}
   end
 
-  test "apply team to competition", %{u1: u1, t1: t1} do
+  test "apply team to edition", %{u1: u1, t1: t1} do
     u2 = create_user()
     create_membership(t1, u2)
 
@@ -84,11 +84,11 @@ defmodule Api.TeamsTest do
     assert changeset.valid? == false
   end
 
-  test "accept team into competition", %{t1: t1, u1: u1} do
+  test "accept team into edition", %{t1: t1, u1: u1} do
     {:ok, t2} = Teams.accept_team(t1.id)
 
     assert t2.accepted == true
-    assert Competitions.get_attendance(t2.competition_id, u1.id)
+    assert Editions.get_attendance(t2.edition_id, u1.id)
 
   end
 

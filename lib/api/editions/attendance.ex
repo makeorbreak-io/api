@@ -1,30 +1,30 @@
-defmodule Api.Competitions.Attendance do
+defmodule Api.Editions.Attendance do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Api.Competitions.Competition
+  alias Api.Editions.Edition
   alias ApiWeb.{EctoHelper, Crypto}
 
   @valid_attrs ~w(
     attendee
-    competition_id
+    edition_id
     checked_in
   )a
 
   @required_attrs ~w(
     attendee
     voter_identity
-    competition_id
+    edition_id
   )a
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  schema "competition_attendance" do
+  schema "edition_attendance" do
     field :attendee, :binary_id
     field :checked_in, :boolean, default: false
     field :voter_identity, :string
 
-    belongs_to :competition, Competition
+    belongs_to :edition, Edition
 
     timestamps()
   end
@@ -35,6 +35,6 @@ defmodule Api.Competitions.Attendance do
     |> EctoHelper.if_missing(:voter_identity, Crypto.random_hmac())
     |> validate_required(@required_attrs)
     |> unique_constraint(:voter_identity)
-    |> unique_constraint(:attendee_competition_id)
+    |> unique_constraint(:attendee_edition_id)
   end
 end
