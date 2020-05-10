@@ -4,7 +4,7 @@ defmodule Api.GraphQL.Mutations.Suffrages do
   alias Api.GraphQL.Middleware.{RequireAuthn, RequireAdmin}
 
   alias Api.Accounts
-  alias Api.Competitions
+  alias Api.Editions
   alias Api.Suffrages
   alias Api.Teams
 
@@ -28,12 +28,12 @@ defmodule Api.GraphQL.Mutations.Suffrages do
     @desc "Create suffrage (admin only)"
     field :create_suffrage, :suffrage do
       arg :suffrage, non_null(:suffrage_input)
-      arg :competition_id, non_null(:string)
+      arg :edition_id, non_null(:string)
 
       middleware RequireAdmin
 
-      resolve fn %{suffrage: suffrage, competition_id: competition_id}, _info ->
-        Suffrages.create_suffrage(suffrage, competition_id)
+      resolve fn %{suffrage: suffrage, edition_id: edition_id}, _info ->
+        Suffrages.create_suffrage(suffrage, edition_id)
       end
     end
 
@@ -102,7 +102,7 @@ defmodule Api.GraphQL.Mutations.Suffrages do
       middleware RequireAdmin
 
       resolve fn %{id: id}, %{context: %{current_user: current_user}} ->
-        Competitions.default_competition.suffrages
+        Editions.default_edition.suffrages
         |> Enum.each(fn suffrage ->
           Suffrages.disqualify_team(id, suffrage.id, current_user)
         end)

@@ -3,7 +3,7 @@ defmodule Api.Accounts.User do
   import Ecto.Changeset
 
   alias Api.Repo
-  alias Api.Competitions.Attendance, as: CompAttendance
+  alias Api.Editions.Attendance, as: EditionAttendance
   alias Api.{Teams.Invite, Teams.Membership}
   alias Api.{Events.Event, Events.Attendance}
   alias Api.{Teams.Invite, Teams.Membership, Teams.ProjectFavorite}
@@ -58,7 +58,7 @@ defmodule Api.Accounts.User do
     has_many :memberships, Membership, foreign_key: :user_id, on_delete: :delete_all
     has_many :teams, through: [:memberships, :team]
     has_many :ai_competition_bots, Bot
-    has_many :attendances, CompAttendance, foreign_key: :attendee
+    has_many :attendances, EditionAttendance, foreign_key: :attendee
     has_many :project_favorites, ProjectFavorite
 
     many_to_many :events, Event, join_through: Attendance, on_delete: :delete_all

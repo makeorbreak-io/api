@@ -4,7 +4,7 @@ defmodule Api.Stats do
   alias Api.Repo
   alias Api.Accounts.User
   alias Api.Events.{Event, Attendance}
-  alias Api.Competitions.Attendance, as: CompAttendance
+  alias Api.Editions.Attendance, as: EditionAttendance
   alias Api.Teams.{Team, Membership}
 
   def get do
@@ -19,7 +19,7 @@ defmodule Api.Stats do
       join: t in assoc(u, :team),
       where: t.applied == true,
       preload: [team: t]
-    checked_in_users = from a in CompAttendance,
+    checked_in_users = from a in EditionAttendance,
       where: a.checked_in == true
 
     %{

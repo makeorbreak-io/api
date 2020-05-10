@@ -40,17 +40,17 @@ defmodule Api.GraphQL.Queries.AdminResources do
       resolve Resolvers.all(User)
     end
 
-    @desc "All competitions (admin)"
-    field :competitions, list_of(:competition) do
+    @desc "All editions (admin)"
+    field :editions, list_of(:edition) do
       arg :order_by, :string
 
       middleware RequireAdmin
 
       resolve fn _, _ ->
-        competitions = Api.Competitions.list_competitions
+        editions = Api.Editions.list_editions
         |> Api.Repo.preload(:suffrages)
 
-        {:ok, competitions}
+        {:ok, editions}
       end
     end
 

@@ -7,17 +7,17 @@ defmodule Api.SuffragesTest do
 
   setup do
     member = create_user()
-    competition = create_competition()
-    create_competition_attendance(competition, member)
-    team = create_team(member, competition)
+    edition = create_edition()
+    create_edition_attendance(edition, member)
+    team = create_team(member, edition)
 
-    check_in_everyone(competition.id)
+    check_in_everyone(edition.id)
 
     {
       :ok,
       %{
-        c: competition,
-        s: create_suffrage(competition.id),
+        c: edition,
+        s: create_suffrage(edition.id),
         a: create_admin(),
         m: member,
         t: team,
@@ -223,7 +223,7 @@ defmodule Api.SuffragesTest.CalculatePodium do
   alias Api.Suffrages.{Suffrage, Candidate}
 
   setup do
-    c1 = create_competition(%{name: "awesome competition", is_default: true})
+    c1 = create_edition(%{name: "awesome edition", is_default: true})
     s1 = create_suffrage(c1.id)
     u1 = create_attendee(c1)
     t1 = create_team(u1, c1, %{prize_preference: [s1.id]})

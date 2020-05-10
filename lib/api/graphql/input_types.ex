@@ -7,7 +7,7 @@ defmodule Api.GraphQL.InputTypes do
     field :source_code, non_null(:string)
   end
 
-  input_object :competition_input do
+  input_object :edition_input do
     field :name, non_null(:string)
     field :status, non_null(:string)
     field :is_default, :boolean

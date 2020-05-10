@@ -3,7 +3,7 @@ defmodule Api.GraphQL.Queries.Suffrages do
 
   alias Api.GraphQL.Middleware.{RequireAuthn, RequireAdmin}
 
-  alias Api.Competitions
+  alias Api.Editions
   alias Api.Suffrages
 
   object :suffrages_queries do
@@ -26,13 +26,13 @@ defmodule Api.GraphQL.Queries.Suffrages do
 
     field :info_start, non_null(:string) do
       resolve fn _args, _info ->
-        {:ok, Suffrages.build_info_start(Competitions.default_competition().id)}
+        {:ok, Suffrages.build_info_start(Editions.default_edition().id)}
       end
     end
 
     field :info_end, :string do
       resolve fn _args, _info ->
-        {:ok, Suffrages.build_info_end(Competitions.default_competition().id)}
+        {:ok, Suffrages.build_info_end(Editions.default_edition().id)}
       end
     end
 
@@ -42,7 +42,7 @@ defmodule Api.GraphQL.Queries.Suffrages do
       resolve fn _args, _info ->
         {
           :ok,
-          Suffrages.unredeemed_paper_votes(Competitions.default_competition().id)
+          Suffrages.unredeemed_paper_votes(Editions.default_edition().id)
           |> Api.Repo.all()
         }
       end
@@ -54,7 +54,7 @@ defmodule Api.GraphQL.Queries.Suffrages do
       resolve fn _args, _info ->
         {
           :ok,
-          Suffrages.redeemed_paper_votes(Competitions.default_competition().id)
+          Suffrages.redeemed_paper_votes(Editions.default_edition().id)
           |> Api.Repo.all()
         }
       end
@@ -69,4 +69,3 @@ defmodule Api.GraphQL.Queries.Suffrages do
     end
   end
 end
-

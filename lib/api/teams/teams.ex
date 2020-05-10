@@ -7,7 +7,7 @@ defmodule Api.Teams do
 
   alias Api.{Mailer, Repo}
   alias Api.Accounts.User
-  alias Api.Competitions
+  alias Api.Editions
   alias Api.Teams.{Invite, Membership, Team}
   alias Api.Notifications.Emails
   alias Ecto.{Changeset}
@@ -78,7 +78,7 @@ defmodule Api.Teams do
       {:ok, team} ->
         members = Repo.all Ecto.assoc(team, :members)
         Enum.map(members, fn(member) ->
-          Competitions.create_attendance(team.competition_id, member.id)
+          Editions.create_attendance(team.edition_id, member.id)
         end)
 
         {:ok, team}

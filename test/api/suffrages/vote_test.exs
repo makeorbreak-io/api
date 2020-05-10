@@ -4,10 +4,10 @@ defmodule Api.VoteTest do
   alias Api.Suffrages.Vote
 
   setup %{} do
-    competition = create_competition()
+    edition = create_edition()
     {:ok, %{
-      suffrage: create_suffrage(competition.id),
-      team: create_team(create_user(), competition),
+      suffrage: create_suffrage(edition.id),
+      team: create_team(create_user(), edition),
     }}
   end
 

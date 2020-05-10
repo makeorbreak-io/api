@@ -8,11 +8,11 @@ defmodule ApiWeb.TestHelper do
   alias Api.Accounts.User
   alias Api.Events.{Event, Attendance}
   alias Api.Teams.{Team, Membership, Invite}
-  alias Api.Competitions
-  alias Api.Competitions.Competition
+  alias Api.Editions
+  alias Api.Editions.Edition
   alias Api.Teams
   alias Api.Suffrages.{Suffrage, Vote, PaperVote}
-  alias Api.Competitions.Attendance, as: CompAttendance
+  alias Api.Editions.Attendance, as: EditionAttendance
 
   @valid_user_attrs %{
     name: "john doe",
@@ -27,8 +27,8 @@ defmodule ApiWeb.TestHelper do
     type: "workshop"
   }
 
-  @valid_competition_attrs %{
-    name: "awesome competition",
+  @valid_edition_attrs %{
+    name: "awesome edition",
   }
 
   defp add_email(params) do
@@ -51,17 +51,17 @@ defmodule ApiWeb.TestHelper do
     |> Repo.insert!
   end
 
-  def create_attendee(competition) do
+  def create_attendee(edition) do
     user = create_user()
-    create_competition_attendance(competition, user)
+    create_edition_attendance(edition, user)
 
     user
   end
 
-  def create_attendance_with_user(competition) do
+  def create_attendance_with_user(edition) do
     user = create_user()
 
-    create_competition_attendance(competition, user)
+    create_edition_attendance(edition, user)
   end
 
   def create_admin(params \\ @valid_user_attrs) do
@@ -74,9 +74,9 @@ defmodule ApiWeb.TestHelper do
     |> Repo.insert!
   end
 
-  def create_team(user, competition, params \\ %{}) do
+  def create_team(user, edition, params \\ %{}) do
     params = Map.merge(params, %{name: "awesome team #{to_string(:rand.uniform())}"})
-    team = %Team{competition_id: competition.id}
+    team = %Team{edition_id: edition.id}
     |> Team.changeset(params)
     |> Repo.insert!
 
@@ -85,15 +85,15 @@ defmodule ApiWeb.TestHelper do
     team
   end
 
-  def create_competition(params \\ @valid_competition_attrs) do
-    %Competition{}
-    |> Competition.changeset(params)
+  def create_edition(params \\ @valid_edition_attrs) do
+    %Edition{}
+    |> Edition.changeset(params)
     |> Repo.insert!
   end
 
-  def create_competition_attendance(competition, user) do
-    %CompAttendance{}
-    |> CompAttendance.changeset(%{competition_id: competition.id, attendee: user.id})
+  def create_edition_attendance(edition, user) do
+    %EditionAttendance{}
+    |> EditionAttendance.changeset(%{edition_id: edition.id, attendee: user.id})
     |> Repo.insert!
   end
 
@@ -138,29 +138,29 @@ defmodule ApiWeb.TestHelper do
     |> Repo.insert!
   end
 
-  def create_suffrage(competition_id) do
+  def create_suffrage(edition_id) do
     %Suffrage{}
     |> Suffrage.changeset(
       %{
         name: "awesome #{to_string(:rand.uniform())}",
         slug: "awesome #{to_string(:rand.uniform())}",
-        competition_id: competition_id
+        edition_id: edition_id
       }
     )
     |> Repo.insert!
   end
 
-  def check_in_everyone(competition_id, people \\ nil) do
+  def check_in_everyone(edition_id, people \\ nil) do
     people = people || Repo.all(from u in User, where: u.role == "participant")
 
     people
     |> Enum.map(fn user ->
-      Competitions.toggle_checkin(competition_id, user.id)
+      Editions.toggle_checkin(edition_id, user.id)
     end)
   end
 
-  def make_teams_eligible(competition_id, teams \\ nil) do
-    teams = teams || Repo.all(from t in Team, where: t.competition_id == ^competition_id)
+  def make_teams_eligible(edition_id, teams \\ nil) do
+    teams = teams || Repo.all(from t in Team, where: t.edition_id == ^edition_id)
 
     teams
     |> Enum.map(fn team ->
