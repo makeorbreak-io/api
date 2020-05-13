@@ -12,7 +12,7 @@ defmodule Api.Editions do
 
   def get_edition(id) do
     Repo.get(Edition, id)
-    |> Repo.preload([:suffrages, :teams, :attendances])
+    |> Repo.preload([:suffrages, :teams, :attendances, :events])
   end
 
   def default_edition do

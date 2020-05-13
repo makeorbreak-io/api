@@ -3,6 +3,7 @@ defmodule Api.Events.Event do
   import Ecto.Changeset
 
   alias Api.Events.Attendance
+  alias Api.Editions.Edition
 
   @valid_attrs ~w(
     name
@@ -18,11 +19,13 @@ defmodule Api.Events.Event do
     short_date
     short_speaker
     type
+    edition_id
   )a
 
   @required_attrs ~w(
     name
     slug
+    edition_id
   )a
 
   @derive {Phoenix.Param, key: :slug}
@@ -45,6 +48,7 @@ defmodule Api.Events.Event do
 
     timestamps()
 
+    belongs_to :edition, Edition
     has_many :attendances, Attendance, foreign_key: :event_id, on_delete: :delete_all
     has_many :users, through: [:attendances, :user]
   end

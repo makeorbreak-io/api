@@ -5,6 +5,7 @@ defmodule Api.Editions.Edition do
   alias Api.Editions.Attendance
   alias Api.Teams.Team
   alias Api.Suffrages.Suffrage
+  alias Api.Events.Event
 
   @valid_attrs ~w(
     name
@@ -23,6 +24,7 @@ defmodule Api.Editions.Edition do
     has_many :suffrages, Suffrage
     has_many :teams, Team
     has_many :attendances, Attendance
+    has_many :events, Event
     has_many :users, through: [:attendances, :attendee]
   end
 
