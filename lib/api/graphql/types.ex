@@ -230,6 +230,7 @@ defmodule Api.GraphQL.Types do
     field :banner_image, :string
     field :short_speaker, :string
     field :short_date, :string
+    field :type, :string
 
     field :attendances, list_of(:event_attendance), resolve: assoc(:attendances)
     field :users, list_of(:user) do
