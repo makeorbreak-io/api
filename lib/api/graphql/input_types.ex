@@ -53,6 +53,7 @@ defmodule Api.GraphQL.InputTypes do
     field :speaker_image, :string
     field :banner_image, :string
     field :type, :string
+    field :edition_id, :string
   end
 
   input_object :flyby_input do

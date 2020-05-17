@@ -7,7 +7,12 @@ defmodule Api.EventTest do
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = Event.changeset(%Event{}, @valid_attrs)
+    c = create_edition()
+
+    changeset = Event.changeset(
+      %Event{},
+      Map.merge(@valid_attrs, %{edition_id: c.id})
+    )
     assert changeset.valid?
   end
 

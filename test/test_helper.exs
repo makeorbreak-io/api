@@ -97,8 +97,8 @@ defmodule ApiWeb.TestHelper do
     |> Repo.insert!
   end
 
-  def create_event(params \\ @valid_event_attrs) do
-    %Event{}
+  def create_event(edition, params \\ @valid_event_attrs) do
+    %Event{edition_id: edition.id}
     |> Event.changeset(params |> add_slug)
     |> Repo.insert!
   end

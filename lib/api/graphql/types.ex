@@ -65,6 +65,7 @@ defmodule Api.GraphQL.Types do
     field :is_default, :boolean
 
     field :teams, list_of(:team)
+    field :events, list_of(:event), resolve: assoc(:events)
     field :suffrages, list_of(:suffrage)
     field :attendances, list_of(:attendance)
   end
@@ -230,7 +231,10 @@ defmodule Api.GraphQL.Types do
     field :banner_image, :string
     field :short_speaker, :string
     field :short_date, :string
+    field :type, :string
+    field :edition_id, :string
 
+    field :edition, :edition, resolve: assoc(:edition)
     field :attendances, list_of(:event_attendance), resolve: assoc(:attendances)
     field :users, list_of(:user) do
       resolve fn _args, %{source: source, context: %{current_user: current_user}} ->
