@@ -31,6 +31,9 @@ defmodule ApiWeb.Router do
 
   scope "/", ApiWeb do
     pipe_through :api
+
+    get  "/api/users/password/get_token", UserController, :get_token
+    post "/api/users/password/recover", UserController, :recover_password
   end
 
   scope "/" do
