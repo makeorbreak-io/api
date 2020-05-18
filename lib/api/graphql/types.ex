@@ -291,7 +291,7 @@ defmodule Api.GraphQL.Types do
     field :status, :string
     field :voting_started_at, :naive_datetime
     field :voting_ended_at, :naive_datetime
-    field :edition_id
+    field :edition_id, :string
 
     field :teams, list_of(:team), resolve: assoc(:teams)
   end
