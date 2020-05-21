@@ -4,7 +4,7 @@ use Mix.Config
 config :api, Api.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   adapter: Ecto.Adapters.Postgres,
-  url: "#{System.get_env("DB_URL")}-test"
+  url: "#{System.get_env("DATABASE_URL")}-test"
 
 config :api,
   slack_token: "DUMMY-TOKEN",
