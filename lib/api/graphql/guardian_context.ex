@@ -19,7 +19,7 @@ defmodule Api.GraphQL.GuardianContext do
          {:ok, current_user, _claims} <- ApiWeb.Guardian.resource_from_token(token) do
       %{current_user: current_user}
     else
-      _ -> %{}
+      _ -> %{current_user: nil}
     end
   end
 end
