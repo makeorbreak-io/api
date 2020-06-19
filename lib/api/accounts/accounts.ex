@@ -98,9 +98,7 @@ defmodule Api.Accounts do
   end
 
   defp check_password(nil, _password), do: {:error, :wrong_credentials}
-  defp check_password(user, password) do
-    Argon2.check_pass(password, user.password_hash) && {:ok, user} || {:error, :wrong_credentials}
-  end
+  defp check_password(user, password), do: Argon2.check_pass(user, password)
 
   defp sign_user({:error, error}), do: {:error, error}
   defp sign_user({:ok, user}) do
